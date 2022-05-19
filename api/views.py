@@ -8,7 +8,7 @@ from rest_framework import serializers, status
 
 from .serializers import ArticleSerializer, BlogDetailSerializer, ArticleInBlogSerializer
 from blog.models import Article, Blog, BlogFollow
-
+from accounts.models import CustomUser
 
 class ArticleView(APIView, LimitOffsetPagination):
     """Получение всех статей"""
@@ -90,6 +90,7 @@ class UnfollowBlog(APIView):
 
 class Following(APIView, LimitOffsetPagination):
     """Персональная лента с пагинацией 10 постов"""
+
     def get(self, request):
         user = request.user
         # user.follower.values('id') - id блогов, на которые подписан пользователь
@@ -98,3 +99,35 @@ class Following(APIView, LimitOffsetPagination):
         result_page = self.paginate_queryset(blog_obj, request, view=self)
         serializer = ArticleSerializer(result_page, many=True)
         return self.get_paginated_response(serializer.data)
+
+
+class ArticleDetail(APIView):
+    """Детальный просмотр статьи"""
+
+    def get(self, request, article_id):
+        article = get_object_or_404(Article, id=article_id)
+        serializer = ArticleSerializer(article)
+        return Response({"article": serializer.data})
+
+
+class ReadArticle(APIView):
+    """Отметка статьи прочитанной"""
+
+    def get(self, request, article_id):
+        user = request.user
+        article = get_object_or_404(Article, id=article_id)
+        user.read.add(article)
+        return Response({'success': "Статья успешно прочитана"}, status=status.HTTP_200_OK)
+
+
+class HistoryReadArticles(APIView):
+    """История прочитанных статей"""
+
+    def get(self, request):
+        user = request.user
+        try:
+            articles = Article.objects.filter(id__in=user.read.values('id'))
+            serializer = ArticleSerializer(articles, many=True)
+            return Response({"articles": serializer.data})
+        except ObjectDoesNotExist:
+            return Response({"message": "У вас еще нет прочитанных статей"})
