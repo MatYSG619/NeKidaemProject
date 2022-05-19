@@ -165,7 +165,7 @@ python manage.py runserver
 
 |type|url| json exempel                                                              |
 |---|---|---------------------------------------------------------------------------|
-|POST|/api/articles/| {"article": {"title": "Вторая запись","text": "Текст для второй записи"}} |
+|POST|/api/articles/add/| {"article": {"title": "Вторая запись","text": "Текст для второй записи"}} |
 
 ##### RETURN
 
