@@ -467,7 +467,7 @@ Subject: New article
 From: admin@test.ru
 To: admin@test.ru
 Date: Thu, 19 May 2022 11:10:10 -0000
-Message-ID: <165295861089.27872.4006424371238632024@LAPTOP-I5OQG0IO>
+Message-ID: <165295861089.27872.4006424371238632024@...>
 
 Статьи
 Автор: Rita
