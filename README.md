@@ -27,7 +27,7 @@ cd NeKidaemProject
 ```
 
 В корне проекта создать файл configure.py.<br>
-Создать переменную SQL_PASSWORD = '<Ваш пароль>'
+Создать переменную SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'
 
 ```console
 pip install -r requirenments.txt
