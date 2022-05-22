@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from rest_framework import serializers, status
 
 from .serializers import ArticleSerializer, BlogDetailSerializer, ArticleInBlogSerializer
 from blog.models import Article, Blog, BlogFollow
+from accounts.models import CustomUser
 
 
 class ArticleView(APIView, LimitOffsetPagination):
@@ -143,3 +145,25 @@ class HistoryReadArticles(APIView):
             return Response({"articles": serializer.data})
         except ObjectDoesNotExist:
             return Response({"message": "У вас еще нет прочитанных статей"})
+
+
+def send_articles(request):
+    """Отправка сообщения на почту пользователям в ручную через панель администрирования"""
+    # Получение всех пользователей
+    users = CustomUser.objects.all()
+    for user in users:
+        # Пять последних статей из блогов, на которые подписан пользователь
+        articles = Article.objects.filter(blog__follow__in=user.follower.values('id'))[:5]
+        message = 'Статьи\n'
+        for article in articles:
+            # Формирование сообщения
+            message += f"Автор: {article.author}\n" \
+                       f"Название: {article.title}\n" \
+                       f"Текст: {article.text}\n"
+        # Отправка сообщения
+        send_mail(subject='New article',
+                  message=message,
+                  from_email="admin@test.ru",
+                  recipient_list=[f"{user.email}"]
+                  )
+    return redirect(request.META.get('HTTP_REFERER'))

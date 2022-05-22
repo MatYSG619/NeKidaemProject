@@ -5,6 +5,7 @@ from blog.models import Article
 
 
 def send_articles():
+    """Отправка сообщения почти автоматически"""
     # Получение всех пользователей
     users = CustomUser.objects.all()
     for user in users:

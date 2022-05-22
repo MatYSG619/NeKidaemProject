@@ -6,6 +6,7 @@ from .models import Article, BlogFollow
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'created', 'author']
     ordering = ['created']
+    change_list_template = 'admin/change_list.html'
 
 
 @admin.register(BlogFollow)

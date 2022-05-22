@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import ArticleView, CreateArticle, BlogView, FollowBlog, UnfollowBlog, \
-    Following, ReadArticle, ArticleDetail, HistoryReadArticles
+    Following, ReadArticle, ArticleDetail, HistoryReadArticles, send_articles
 
 urlpatterns = [
     # Получение всех статей
@@ -22,4 +22,6 @@ urlpatterns = [
     path('blog/<int:blog_id>/unfollow/', UnfollowBlog.as_view()),
     # Персональная лента статей
     path('following/', Following.as_view()),
+    # Отправка сообщения на почту пользователям
+    path('send/', send_articles, name='send_message')
 ]
