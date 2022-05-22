@@ -27,7 +27,7 @@ cd NeKidaemProject
 ```
 
 В корне проекта создать файл configure.py.<br>
-Создать переменную SQL_PASSWORD = '<Ваш пароль>'
+Создать переменную SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'
 
 ```console
 pip install -r requirenments.txt
@@ -165,7 +165,7 @@ python manage.py runserver
 
 |type|url| json exempel                                                              |
 |---|---|---------------------------------------------------------------------------|
-|POST|/api/articles/| {"article": {"title": "Вторая запись","text": "Текст для второй записи"}} |
+|POST|/api/articles/add/| {"article": {"title": "Вторая запись","text": "Текст для второй записи"}} |
 
 ##### RETURN
 
@@ -467,7 +467,7 @@ Subject: New article
 From: admin@test.ru
 To: admin@test.ru
 Date: Thu, 19 May 2022 11:10:10 -0000
-Message-ID: <165295861089.27872.4006424371238632024@LAPTOP-I5OQG0IO>
+Message-ID: <165295861089.27872.4006424371238632024@...>
 
 Статьи
 Автор: Rita
