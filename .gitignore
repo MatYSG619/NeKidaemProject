@@ -1,3 +1,4 @@
 configure.py
 *.pyc
 .idea/*
+celerybeat-schedule

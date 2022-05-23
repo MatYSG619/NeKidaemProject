@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.shortcuts import get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
@@ -21,16 +19,6 @@ class ArticleView(APIView, LimitOffsetPagination):
         blogs = Article.objects.all()
         result_page = self.paginate_queryset(blogs, request, view=self)
         serializer = ArticleSerializer(result_page, many=True)
-        # Отправка сообщений в определенное время
-        # Сложности работы на windows, буду рад подсказке
-        # TODO найти библиотеку
-        hour = datetime.now().hour
-        minute = datetime.now().minute
-        time = f"{hour}:{minute}"
-        print(time)
-        if time == "14:10":
-            from blog.send_article import send_articles
-            send_articles()
         return self.get_paginated_response(serializer.data)
 
 
