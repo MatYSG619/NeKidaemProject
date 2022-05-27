@@ -10,8 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os.path
-
-import configure
+import os
 
 from pathlib import Path
 
@@ -80,13 +79,14 @@ WSGI_APPLICATION = 'nekidaem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# ПОД ВИРТУАЛЬНОЕ ОКРУЖЕНИЕ
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': configure.SQL_NAME,
-        'USER': configure.SQL_USERNAME,
-        'PASSWORD': configure.SQL_PASSWORD,
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("POSTGRES_DB"),
+        'USER': os.environ.get("POSTGRES_USER"),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD"),
+        'HOST': 'db',
         'PORT': '5432',
     }
 }

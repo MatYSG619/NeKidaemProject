@@ -14,10 +14,6 @@
 - При удалении/добавлении поста лента должна изменяться.
 - Раз в сутки на почту должна приходить подборка из 5 последних статей ленты
 
-## Версия Python
-
-Python 3.10
-
 ## Установка
 
 ```console
@@ -26,18 +22,14 @@ git clone https://github.com/MatYSG619/NeKidaemProject
 cd NeKidaemProject
 ```
 
-В корне проекта создать файл configure.py.<br>
-Создать переменную: <br>
-SQL_NAME = '<Имя базы данных>' <br>
-SQL_USERNAME = '<Имя пользователя>' <br>
-Создать переменную SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'
+В Dockerfile вписать переменные: <br>
+SQL_NAME = '<Имя базы данных>'<br>
+SQL_USERNAME = '<Имя пользователя>'<br>
+Создать переменную SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'<br>
 
+В консоле ввести следующую команду
 ```console
-pip install -r requirenments.txt
-
-python manage.py migrate
-
-python manage.py runserver
+sudo docker-compose up
 ```
 
 ## API
