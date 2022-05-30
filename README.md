@@ -27,7 +27,7 @@ SQL_NAME = '<Имя базы данных>'<br>
 SQL_USERNAME = '<Имя пользователя>'<br>
 SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'<br>
 
-В консоле ввести следующую команду
+В терминале ввести следующую команду
 ```console
 sudo docker-compose up
 ```
