@@ -22,10 +22,10 @@ git clone https://github.com/MatYSG619/NeKidaemProject
 cd NeKidaemProject
 ```
 
-В Dockerfile вписать переменные: <br>
+В корне проекта создать файл с названием .env.dev и вписать следующие переменные <br>
 SQL_NAME = '<Имя базы данных>'<br>
 SQL_USERNAME = '<Имя пользователя>'<br>
-Создать переменную SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'<br>
+SQL_PASSWORD = '<Ваш пароль от PostgreSQL>'<br>
 
 В консоле ввести следующую команду
 ```console
@@ -456,15 +456,16 @@ sudo docker-compose up
 ### Пример отправки сообщения на почту
 Для автоматической отправки используется Celery+Redis <br>
 
-Управления рабочими процессами
+Управления рабочими процессами происходит при помощи команды:
 ```console
 celery -A nekidaem worker -l INFO
 ```
-Запуск планировщика
+Запуск планировщика происходит при помощи команды:
 ```console
 celery -A nekidaem beat -l info
 ```
-Пример
+Вышеперечисленные команды прописанны в docker-compose <br>
+Пример сообщения:
 ```console
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0

@@ -1,4 +1,4 @@
-configure.py
+.env.dev
 *.pyc
 .idea/*
 celerybeat-schedule

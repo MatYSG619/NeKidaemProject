@@ -15,7 +15,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send-message-every-day': {
         'task': 'nekidaem.celery.send_articles',
-        'schedule': crontab(minute='05', hour='21'),
+        'schedule': crontab(minute='29', hour='13'),
     }
 }
 
